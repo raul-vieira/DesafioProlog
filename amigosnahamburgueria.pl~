@@ -80,11 +80,11 @@ hamburguer(Hamburguer_3),
 hamburguer(Hamburguer_4),
 hamburguer(Hamburguer_5),
 
+alldifferent([Hamburguer_1, Hamburguer_2, Hamburguer_3, Hamburguer_4, Hamburguer_5]),
+
 %%% 08)Na terceira posição está quem pediu um hambúrguer com Bacon extra.
 
 (Hamburguer_3==baconextra),
-
-alldifferent([Hamburguer_1, Hamburguer_2, Hamburguer_3, Hamburguer_4, Hamburguer_5]),
 
 %%%% CAMISETA
 camiseta(Camiseta_1),
@@ -122,19 +122,11 @@ esporte(Esporte_3),
 esporte(Esporte_4),
 esporte(Esporte_5),
 
+alldifferent([Esporte_1, Esporte_2, Esporte_3, Esporte_4, Esporte_5]),
+
 %%% 12)Quem gosta de Surfe está na quinta posição.
 
 (Esporte_5==surfe),
-
-%%% 10)Quem gosta de Corrida está exatamente à esquerda de quem gosta de Basquete.
-
-(
-(Esporte_1==corrida, Esporte_2==basquete);
-(Esporte_2==corrida, Esporte_3==basquete);
-(Esporte_3==corrida, Esporte_4==basquete);
-(Esporte_4==corrida, Esporte_5==basquete)),
-
-alldifferent([Esporte_1, Esporte_2, Esporte_3, Esporte_4, Esporte_5]),
 
 %%%% IDADE
 idade(Idade_1),
@@ -143,20 +135,11 @@ idade(Idade_3),
 idade(Idade_4),
 idade(Idade_5),
 
+alldifferent([Idade_1, Idade_2, Idade_3, Idade_4, Idade_5]),
+
 %%% 03)Na quarta posição está o homem de 30 anos.
 
 (Idade_4==a30),
-
-%%% 14) O amigo mais novo está exatamente à esquerda do homem de 30 anos.
-
-(
-(Idade_1==a26, Idade_2==a30);
-(Idade_2==a26, Idade_3==a30);
-(Idade_3==a26, Idade_4==a30);
-(Idade_4==a26, Idade_5==a30)),
-
-
-alldifferent([Idade_1, Idade_2, Idade_3, Idade_4, Idade_5]),
 
 %%%% CERVEJA
 cerveja(Cerveja_1),
@@ -164,15 +147,6 @@ cerveja(Cerveja_2),
 cerveja(Cerveja_3),
 cerveja(Cerveja_4),
 cerveja(Cerveja_5),
-
-%%% 16) O homem que está bebendo a cerveja Inglesa está exatamente à esquerda de quem está bebendo a cerveja Holandesa.
-
-(
-(Cerveja_1==inglesa, Cerveja_2==holandesa);
-(Cerveja_2==inglesa, Cerveja_3==holandesa);
-(Cerveja_3==inglesa, Cerveja_4==holandesa);
-(Cerveja_4==inglesa, Cerveja_5==holandesa)),
-
 
 alldifferent([Cerveja_1, Cerveja_2, Cerveja_3, Cerveja_4, Cerveja_5]),
 
@@ -202,6 +176,14 @@ nome(Nome_4),
 nome(Nome_5),
 
 alldifferent([Nome_1, Nome_2, Nome_3, Nome_4, Nome_5]),
+
+%%% 14) O amigo mais novo está exatamente à esquerda do homem de 30 anos.
+
+(
+(Idade_1==a26, Idade_2==a30);
+(Idade_2==a26, Idade_3==a30);
+(Idade_3==a26, Idade_4==a30);
+(Idade_4==a26, Idade_5==a30)),
 
 %%% 19)Evaristo está ao lado do homem de camiseta Azul.
 
@@ -238,6 +220,21 @@ alldifferent([Nome_1, Nome_2, Nome_3, Nome_4, Nome_5]),
 (Nome_3==vinicius, Hamburguer_4==semcebola);
 (Nome_4==vinicius, Hamburguer_5==semcebola)),
 
+%%% 10)Quem gosta de Corrida está exatamente à esquerda de quem gosta de Basquete.
+
+(
+(Esporte_1==corrida, Esporte_2==basquete);
+(Esporte_2==corrida, Esporte_3==basquete);
+(Esporte_3==corrida, Esporte_4==basquete);
+(Esporte_4==corrida, Esporte_5==basquete)),
+
+%%% 16) O homem que está bebendo a cerveja Inglesa está exatamente à esquerda de quem está bebendo a cerveja Holandesa.
+
+(
+(Cerveja_1==inglesa, Cerveja_2==holandesa);
+(Cerveja_2==inglesa, Cerveja_3==holandesa);
+(Cerveja_3==inglesa, Cerveja_4==holandesa);
+(Cerveja_4==inglesa, Cerveja_5==holandesa)),
 
 %%% 09) O homem de 28 anos está exatamente à direita do homem de camiseta Branca.
 
