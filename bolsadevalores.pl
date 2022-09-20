@@ -17,7 +17,7 @@ Siga as dicas e use a lógica para descobrir quem gosta do setor petroquímico.
 gravata(amarela).
 gravata(branca).
 gravata(verde).
-gravata(verde).
+gravata(azul).
 gravata(vermelha).
 
 %NOMES
@@ -76,19 +76,52 @@ modelo([
 
 %ANALISANDO AS INSTRUÇÕES DO PROBLEMA
 
-%PROFISSAO
-profissao(Profissao_1),
-profissao(Profissao_2),
-profissao(Profissao_3),
-profissao(Profissao_4),
-profissao(Profissao_5),
-
 %SETORES
 setor(Setor_1),
 setor(Setor_2),
 setor(Setor_3),
 setor(Setor_4),
 setor(Setor_5),
+
+alldifferent([Setor_1, Setor_2, Setor_3, Setor_4, Setor_5]),
+
+%12) Na quarta posição está o homem que investe em empresas do setor de Mineração.
+
+(Setor_4==mineracao),
+
+%GRAVATAS
+gravata(Gravata_1),
+gravata(Gravata_2),
+gravata(Gravata_3),
+gravata(Gravata_4),
+gravata(Gravata_5),
+
+alldifferent([Gravata_1, Gravata_2, Gravata_3, Gravata_4, Gravata_5]),
+
+%17) O homem de gravata Verde está em algum lugar entre o homem de gravata Azul e o homem de gravata Vermelha, nessa ordem.
+
+(
+(Gravata_2==verde, Gravata_1==azul, (Gravata_3==vermelha; Gravata_4==vermelha; Gravata_5==vermelha));
+(Gravata_3==verde, (Gravata_1==azul; Gravata_2==azul), (Gravata_4==vermelha; Gravata_5==vermelha));
+(Gravata_4==verde, (Gravata_1==azul; Gravata_2==azul; Gravata_3==azul), Gravata_5==vermelha)),
+
+
+
+%11)O investidor de gravata Branca gosta de empresas do setor Mineração.
+
+(
+(Gravata_1==branca, Setor_1==mineracao);
+(Gravata_2==branca, Setor_2==mineracao);
+(Gravata_3==branca, Setor_3==mineracao);
+(Gravata_4==branca, Setor_4==mineracao);
+(Gravata_5==branca, Setor_5==mineracao)),
+
+%PROFISSAO
+profissao(Profissao_1),
+profissao(Profissao_2),
+profissao(Profissao_3),
+profissao(Profissao_4),
+profissao(Profissao_5),
 
 %1) O Bancário gosta de empresas do setor de Energia.
 (
@@ -99,9 +132,6 @@ setor(Setor_5),
 (Profissao_5==bancario, Setor_5==energia)),
 
 alldifferent([Profissao_1, Profissao_2, Profissao_3, Profissao_4, Profissao_5]),
-alldifferent([Setor_1, Setor_2, Setor_3, Setor_4, Setor_5]),
-
-%2) Diego está ao lado do homem que tem o maior investimento na bolsa.
 
 %NOME
 nome(Nome_1),
@@ -110,39 +140,8 @@ nome(Nome_3),
 nome(Nome_4),
 nome(Nome_5),
 
-%INVESTIMENTO
-investimento(Investimento_1),
-investimento(Investimento_2),
-investimento(Investimento_3),
-investimento(Investimento_4),
-investimento(Investimento_5),
-
-alldifferent([Investimento_1, Investimento_2, Investimento_3, Investimento_4, Investimento_5]),
 alldifferent([Nome_1, Nome_2, Nome_3, Nome_4, Nome_5]),
 
-(
-(Nome_1==diego, Investimento_2==i25000);
-(Nome_2==diego, (Investimento_1==i25000; Investimento_3==i25000));
-(Nome_3==diego, (Investimento_2==i25000; Investimento_4==i25000));
-(Nome_4==diego, (Investimento_3==i25000; Investimento_5==i25000));
-(Nome_5==diego, Investimento_4==i25000)),
-
-%3) O homem mais novo tem R$ 20000 investido na bolsa.
-%IDADE
-idade(Idade_1),
-idade(Idade_2),
-idade(Idade_3),
-idade(Idade_4),
-idade(Idade_5),
-
-alldifferent([Idade_1, Idade_2, Idade_3, Idade_4, Idade_5]),
-
-(
-(Idade_1==a40, Investimento_1==i20000);
-(Idade_2==a40, Investimento_2==i20000);
-(Idade_3==a40, Investimento_3==i20000);
-(Idade_4==a40, Investimento_4==i20000);
-(Idade_5==a40, Investimento_5==i20000)),
 
 %4) Cláudio está ao lado do investidor que gosta do setor de Varejo.
 
@@ -154,14 +153,6 @@ alldifferent([Idade_1, Idade_2, Idade_3, Idade_4, Idade_5]),
 (Nome_5==claudio, Setor_4==varejo)),
 
 %5) O homem de gravata Azul está em algum lugar entre o Wagner e o homem que tem R$ 5000 de investimento na bolsa, nessa ordem.
-%GRAVATAS
-gravata(Gravata_1),
-gravata(Gravata_2),
-gravata(Gravata_3),
-gravata(Gravata_4),
-gravata(Gravata_5),
-
-alldifferent([Gravata_1, Gravata_2, Gravata_3, Gravata_4, Gravata_5]),
 
 (
 (Nome_1==wagner, (Gravata_2==azul; Gravata_3==azul; Gravata_4==azul), Investimento_5==i5000);
@@ -170,6 +161,44 @@ alldifferent([Gravata_1, Gravata_2, Gravata_3, Gravata_4, Gravata_5]),
 (Nome_2==wagner, (Gravata_3==azul; Gravata_4==azul), Investimento_5==i5000);
 (Nome_2==wagner, Gravata_3==azul, Investimento_4==i5000);
 (Nome_3==wagner,  Gravata_4==azul, Investimento_5==i5000)),
+
+%2) Diego está ao lado do homem que tem o maior investimento na bolsa.
+
+
+%INVESTIMENTO
+investimento(Investimento_1),
+investimento(Investimento_2),
+investimento(Investimento_3),
+investimento(Investimento_4),
+investimento(Investimento_5),
+
+(
+(Nome_1==diego, Investimento_2==i25000);
+(Nome_2==diego, (Investimento_1==i25000; Investimento_3==i25000));
+(Nome_3==diego, (Investimento_2==i25000; Investimento_4==i25000));
+(Nome_4==diego, (Investimento_3==i25000; Investimento_5==i25000));
+(Nome_5==diego, Investimento_4==i25000)),
+
+alldifferent([Investimento_1, Investimento_2, Investimento_3, Investimento_4, Investimento_5]),
+
+%3) O homem mais novo tem R$ 20000 investido na bolsa.
+%IDADE
+idade(Idade_1),
+idade(Idade_2),
+idade(Idade_3),
+idade(Idade_4),
+idade(Idade_5),
+
+
+(
+(Idade_1==a40, Investimento_1==i20000);
+(Idade_2==a40, Investimento_2==i20000);
+(Idade_3==a40, Investimento_3==i20000);
+(Idade_4==a40, Investimento_4==i20000);
+(Idade_5==a40, Investimento_5==i20000)),
+
+alldifferent([Idade_1, Idade_2, Idade_3, Idade_4, Idade_5]),
+
 
 %6) O Delegado tem R$ 10000 de investimento na bolsa de valores.
 
@@ -212,18 +241,7 @@ alldifferent([Gravata_1, Gravata_2, Gravata_3, Gravata_4, Gravata_5]),
 (Idade_4==a50, (Gravata_1==azul; Gravata_2==azul; Gravata_3==azul));
 (Idade_5==a50, (Gravata_1==azul; Gravata_2==azul; Gravata_3==azul; Gravata_4==azul))),
 
-%11)O investidor de gravata Branca gosta de empresas do setor Mineração.
 
-(
-(Gravata_1==branca, Setor_1==mineracao);
-(Gravata_2==branca, Setor_2==mineracao);
-(Gravata_3==branca, Setor_3==mineracao);
-(Gravata_4==branca, Setor_4==mineracao);
-(Gravata_5==branca, Setor_5==mineracao)),
-
-%12) Na quarta posição está o homem que investe em empresas do setor de Mineração.
-
-(Setor_4==mineracao),
 
 %13) O Corretor tem R$ 5000 de investimento no mercado de ações.
 
@@ -259,13 +277,6 @@ alldifferent([Gravata_1, Gravata_2, Gravata_3, Gravata_4, Gravata_5]),
 (Nome_3==wagner, Profissao_3==arquiteto);
 (Nome_4==wagner, Profissao_4==arquiteto);
 (Nome_5==wagner, Profissao_5==arquiteto)),
-
-%17) O homem de gravata Verde está em algum lugar entre o homem de gravata Azul e o homem de gravata Vermelha, nessa ordem.
-
-(
-(Gravata_2==verde, Gravata_1==azul, (Gravata_3==vermelha; Gravata_4==vermelha; Gravata_5==vermelha));
-(Gravata_3==verde, (Gravata_1==azul; Gravata_2==azul), (Gravata_4==vermelha; Gravata_5==vermelha));
-(Gravata_4==verde, (Gravata_1==azul; Gravata_2==azul; Gravata_3==azul), Gravata_5==vermelha)),
 
 %18) João está ao lado do Corretor.
 
