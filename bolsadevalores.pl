@@ -8,7 +8,7 @@ Siga as dicas e use a lógica para descobrir quem gosta do setor petroquímico.
 *   05 colunas
 *   06 linhas
 *   20 instruções
-* Fonte: https://rachacuca.com.br/logica/problemas/amigas-na-praia/
+* Fonte: https://rachacuca.com.br/logica/problemas/bolsa-de-valores/
 */
 
 %FATOS - O QUE TEM DE BASE DE DADOS?
@@ -96,16 +96,16 @@ gravata(Gravata_3),
 gravata(Gravata_4),
 gravata(Gravata_5),
 
-alldifferent([Gravata_1, Gravata_2, Gravata_3, Gravata_4, Gravata_5]),
 
 %17) O homem de gravata Verde está em algum lugar entre o homem de gravata Azul e o homem de gravata Vermelha, nessa ordem.
 
 (
-(Gravata_2==verde, Gravata_1==azul, (Gravata_3==vermelha; Gravata_4==vermelha; Gravata_5==vermelha));
-(Gravata_3==verde, (Gravata_1==azul; Gravata_2==azul), (Gravata_4==vermelha; Gravata_5==vermelha));
-(Gravata_4==verde, (Gravata_1==azul; Gravata_2==azul; Gravata_3==azul), Gravata_5==vermelha)),
-
-
+(Gravata_1==azul, (Gravata_2==verde; Gravata_3==verde; Gravata_4==verde), Gravata_5==vermelha);
+(Gravata_1==azul, (Gravata_2==verde; Gravata_3==verde), Gravata_4==vermelha);
+(Gravata_1==azul, (Gravata_2==verde), Gravata_3==vermelha);
+(Gravata_2==azul, (Gravata_3==verde; Gravata_4==verde), Gravata_5==vermelha);
+(Gravata_2==azul, (Gravata_3==verde), Gravata_4==vermelha);
+(Gravata_3==azul, (Gravata_4==verde), Gravata_5==vermelha)),
 
 %11)O investidor de gravata Branca gosta de empresas do setor Mineração.
 
@@ -115,6 +115,62 @@ alldifferent([Gravata_1, Gravata_2, Gravata_3, Gravata_4, Gravata_5]),
 (Gravata_3==branca, Setor_3==mineracao);
 (Gravata_4==branca, Setor_4==mineracao);
 (Gravata_5==branca, Setor_5==mineracao)),
+
+alldifferent([Gravata_1, Gravata_2, Gravata_3, Gravata_4, Gravata_5]),
+
+%IDADE
+idade(Idade_1),
+idade(Idade_2),
+idade(Idade_3),
+idade(Idade_4),
+idade(Idade_5),
+
+%20) O investidor de gravata Amarela tem 45 anos.
+
+(
+(Gravata_1==amarela, Idade_1==a45);
+(Gravata_2==amarela, Idade_2==a45);
+(Gravata_3==amarela, Idade_3==a45);
+(Gravata_4==amarela, Idade_4==a45);
+(Gravata_5==amarela, Idade_5==a45)),
+
+alldifferent([Idade_1, Idade_2, Idade_3, Idade_4, Idade_5]),
+
+%10) O homem de 50 anos está em algum lugar à direita do homem de gravata Azul.
+
+(
+(Idade_2==a50, Gravata_1==azul);
+(Idade_3==a50, (Gravata_1==azul; Gravata_2==azul));
+(Idade_4==a50, (Gravata_1==azul; Gravata_2==azul; Gravata_3==azul));
+(Idade_5==a50, (Gravata_1==azul; Gravata_2==azul; Gravata_3==azul; Gravata_4==azul))),
+
+%NOME
+nome(Nome_1),
+nome(Nome_2),
+nome(Nome_3),
+nome(Nome_4),
+nome(Nome_5),
+
+%5) O homem de gravata Azul está em algum lugar entre o Wagner e o homem que tem R$ 5000 de investimento na bolsa, nessa ordem.
+
+(
+(Nome_1==wagner, (Gravata_2==azul; Gravata_3==azul; Gravata_4==azul), Investimento_5==i5000);
+(Nome_1==wagner, (Gravata_2==azul; Gravata_3==azul), Investimento_4==i5000);
+(Nome_1==wagner, Gravata_2==azul, Investimento_3==i5000);
+(Nome_2==wagner, (Gravata_3==azul; Gravata_4==azul), Investimento_5==i5000);
+(Nome_2==wagner, Gravata_3==azul, Investimento_4==i5000);
+(Nome_3==wagner,  Gravata_4==azul, Investimento_5==i5000)),
+
+%9) Wagner está exatamente à esquerda do investidor de 55 anos.
+
+(
+(Nome_1==wagner, Idade_2==a55);
+(Nome_2==wagner, Idade_3==a55);
+(Nome_3==wagner, Idade_4==a55);
+(Nome_4==wagner, Idade_5==a55)),
+
+alldifferent([Nome_1, Nome_2, Nome_3, Nome_4, Nome_5]),
+
 
 %PROFISSAO
 profissao(Profissao_1),
@@ -133,15 +189,33 @@ profissao(Profissao_5),
 
 alldifferent([Profissao_1, Profissao_2, Profissao_3, Profissao_4, Profissao_5]),
 
-%NOME
-nome(Nome_1),
-nome(Nome_2),
-nome(Nome_3),
-nome(Nome_4),
-nome(Nome_5),
+%7) O Professor tem 50 anos.
 
-alldifferent([Nome_1, Nome_2, Nome_3, Nome_4, Nome_5]),
+(
+(Profissao_1==professor, Idade_1==a50);
+(Profissao_2==professor, Idade_2==a50);
+(Profissao_3==professor, Idade_3==a50);
+(Profissao_4==professor, Idade_4==a50);
+(Profissao_5==professor, Idade_5==a50)),
 
+
+%16) Wagner é Arquiteto.
+
+(
+(Nome_1==wagner, Profissao_1==arquiteto);
+(Nome_2==wagner, Profissao_2==arquiteto);
+(Nome_3==wagner, Profissao_3==arquiteto);
+(Nome_4==wagner, Profissao_4==arquiteto);
+(Nome_5==wagner, Profissao_5==arquiteto)),
+
+%18) João está ao lado do Corretor.
+
+(
+(Nome_1==joao, Profissao_2==corretor);
+(Nome_2==joao, (Profissao_1==corretor; Profissao_3==corretor));
+(Nome_3==joao, (Profissao_2==corretor; Profissao_4==corretor));
+(Nome_4==joao, (Profissao_3==corretor; Profissao_5==corretor));
+(Nome_5==joao, Profissao_4==corretor)),
 
 %4) Cláudio está ao lado do investidor que gosta do setor de Varejo.
 
@@ -152,18 +226,6 @@ alldifferent([Nome_1, Nome_2, Nome_3, Nome_4, Nome_5]),
 (Nome_4==claudio, (Setor_3==varejo; Setor_5==varejo));
 (Nome_5==claudio, Setor_4==varejo)),
 
-%5) O homem de gravata Azul está em algum lugar entre o Wagner e o homem que tem R$ 5000 de investimento na bolsa, nessa ordem.
-
-(
-(Nome_1==wagner, (Gravata_2==azul; Gravata_3==azul; Gravata_4==azul), Investimento_5==i5000);
-(Nome_1==wagner, (Gravata_2==azul; Gravata_3==azul), Investimento_4==i5000);
-(Nome_1==wagner, Gravata_2==azul, Investimento_3==i5000);
-(Nome_2==wagner, (Gravata_3==azul; Gravata_4==azul), Investimento_5==i5000);
-(Nome_2==wagner, Gravata_3==azul, Investimento_4==i5000);
-(Nome_3==wagner,  Gravata_4==azul, Investimento_5==i5000)),
-
-%2) Diego está ao lado do homem que tem o maior investimento na bolsa.
-
 
 %INVESTIMENTO
 investimento(Investimento_1),
@@ -171,6 +233,8 @@ investimento(Investimento_2),
 investimento(Investimento_3),
 investimento(Investimento_4),
 investimento(Investimento_5),
+
+%2) Diego está ao lado do homem que tem o maior investimento na bolsa.
 
 (
 (Nome_1==diego, Investimento_2==i25000);
@@ -182,13 +246,6 @@ investimento(Investimento_5),
 alldifferent([Investimento_1, Investimento_2, Investimento_3, Investimento_4, Investimento_5]),
 
 %3) O homem mais novo tem R$ 20000 investido na bolsa.
-%IDADE
-idade(Idade_1),
-idade(Idade_2),
-idade(Idade_3),
-idade(Idade_4),
-idade(Idade_5),
-
 
 (
 (Idade_1==a40, Investimento_1==i20000);
@@ -197,50 +254,26 @@ idade(Idade_5),
 (Idade_4==a40, Investimento_4==i20000);
 (Idade_5==a40, Investimento_5==i20000)),
 
-alldifferent([Idade_1, Idade_2, Idade_3, Idade_4, Idade_5]),
-
 
 %6) O Delegado tem R$ 10000 de investimento na bolsa de valores.
 
 (
-(Profissao_1==delegado, Investimento_1==i1000);
-(Profissao_2==delegado, Investimento_2==i1000);
-(Profissao_3==delegado, Investimento_3==i1000);
-(Profissao_4==delegado, Investimento_4==i1000);
-(Profissao_5==delegado, Investimento_5==i1000)),
+(Profissao_1==delegado, Investimento_1==i10000);
+(Profissao_2==delegado, Investimento_2==i10000);
+(Profissao_3==delegado, Investimento_3==i10000);
+(Profissao_4==delegado, Investimento_4==i10000);
+(Profissao_5==delegado, Investimento_5==i10000)),
 
-%7) O Professor tem 50 anos.
-
-(
-(Profissao_1==professor, Idade_1==a50);
-(Profissao_2==professor, Idade_2==a50);
-(Profissao_3==professor, Idade_3==a50);
-(Profissao_4==professor, Idade_4==a50);
-(Profissao_5==professor, Idade_5==a50)),
 
 %8) Quem tem R$ 10000 investido está em algum lugar entre quem está de gravata Amarela e quem está de gravata Branca, nessa ordem.
 
 (
-(Investimento_2==i10000, Gravata_1==amarela, (Gravata_3==branca; Gravata_4==branca; Gravata_5==branca));
-(Investimento_3==i10000, (Gravata_1==amarela; Gravata_2==amarela), (Gravata_4==branca; Gravata_5==branca));
-(Investimento_4==i10000, (Gravata_1==amarela; Gravata_2==amarela; Gravata_3==amarela), Gravata_5==branca)),
-
-%9) Wagner está exatamente à esquerda do investidor de 55 anos.
-
-(
-(Nome_1==wagner, Idade_2==a55);
-(Nome_2==wagner, Idade_3==a55);
-(Nome_3==wagner, Idade_4==a55);
-(Nome_4==wagner, Idade_5==a55)),
-
-%10) O homem de 50 anos está em algum lugar à direita do homem de gravata Azul.
-
-(
-(Idade_2==a50, Gravata_1==azul);
-(Idade_3==a50, (Gravata_1==azul; Gravata_2==azul));
-(Idade_4==a50, (Gravata_1==azul; Gravata_2==azul; Gravata_3==azul));
-(Idade_5==a50, (Gravata_1==azul; Gravata_2==azul; Gravata_3==azul; Gravata_4==azul))),
-
+(Gravata_1==amarela, (Investimento_2==i10000; Investimento_3==i10000; Investimento_4==i10000), Gravata_5==branca);
+(Gravata_1==amarela, (Investimento_2==i10000; Investimento_3==i10000), Gravata_4==branca);
+(Gravata_1==amarela, Investimento_2==i10000, Gravata_3==branca);
+(Gravata_2==amarela, (Investimento_3==i10000; Investimento_4==i10000), Gravata_5==branca);
+(Gravata_2==amarela, Investimento_3==i10000, Gravata_4==branca);
+(Gravata_3==amarela, Investimento_4==i10000, Gravata_5==branca)),
 
 
 %13) O Corretor tem R$ 5000 de investimento no mercado de ações.
@@ -269,23 +302,6 @@ alldifferent([Idade_1, Idade_2, Idade_3, Idade_4, Idade_5]),
 (Setor_4==tecnologia, Investimento_3==i15000);
 (Setor_5==tecnologia, Investimento_4==i15000)),
 
-%16) Wagner é Arquiteto.
-
-(
-(Nome_1==wagner, Profissao_1==arquiteto);
-(Nome_2==wagner, Profissao_2==arquiteto);
-(Nome_3==wagner, Profissao_3==arquiteto);
-(Nome_4==wagner, Profissao_4==arquiteto);
-(Nome_5==wagner, Profissao_5==arquiteto)),
-
-%18) João está ao lado do Corretor.
-
-(
-(Nome_1==joao, Profissao_2==corretor);
-(Nome_2==joao, (Profissao_1==corretor; Profissao_3==corretor));
-(Nome_3==joao, (Profissao_2==corretor; Profissao_4==corretor));
-(Nome_4==joao, (Profissao_3==corretor; Profissao_5==corretor));
-(Nome_5==joao, Profissao_4==corretor)),
 
 %19) O homem mais velho está exatamente à direita do homem que tem R$ 15000 de investimento na bolsa.
 
@@ -295,14 +311,6 @@ alldifferent([Idade_1, Idade_2, Idade_3, Idade_4, Idade_5]),
 (Idade_4==a60, Investimento_3==i15000);
 (Idade_5==a60, Investimento_4==i15000)),
 
-%20) O investidor de gravata Amarela tem 45 anos.
-
-(
-(Gravata_1==amarela, Idade_1==a45);
-(Gravata_2==amarela, Idade_2==a45);
-(Gravata_3==amarela, Idade_3==a45);
-(Gravata_4==amarela, Idade_4==a45);
-(Gravata_5==amarela, Idade_5==a45)),
 
 nl,%insere uma nova linha (coloca o cursor no início da linha de baixo)
 write('CHEGAMOS AO FIM DO MODELO')
