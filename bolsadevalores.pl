@@ -83,11 +83,11 @@ setor(Setor_3),
 setor(Setor_4),
 setor(Setor_5),
 
-alldifferent([Setor_1, Setor_2, Setor_3, Setor_4, Setor_5]),
-
 %12) Na quarta posição está o homem que investe em empresas do setor de Mineração.
 
 (Setor_4==mineracao),
+
+alldifferent([Setor_1, Setor_2, Setor_3, Setor_4, Setor_5]),
 
 %GRAVATAS
 gravata(Gravata_1),
@@ -159,6 +159,16 @@ nome(Nome_5),
 (Nome_3==wagner, Idade_4==a55);
 (Nome_4==wagner, Idade_5==a55)),
 
+%4) Cláudio está ao lado do investidor que gosta do setor de Varejo.
+
+(
+(Nome_1==claudio, Setor_2==varejo);
+(Nome_2==claudio, (Setor_1==varejo; Setor_3==varejo));
+(Nome_3==claudio, (Setor_2=varejo; Setor_4==varejo));
+(Nome_4==claudio, (Setor_3==varejo; Setor_5==varejo));
+(Nome_5==claudio, Setor_4==varejo)),
+
+
 alldifferent([Nome_1, Nome_2, Nome_3, Nome_4, Nome_5]),
 
 
@@ -176,8 +186,6 @@ profissao(Profissao_5),
 (Profissao_3==bancario, Setor_3==energia);
 (Profissao_4==bancario, Setor_4==energia);
 (Profissao_5==bancario, Setor_5==energia)),
-
-alldifferent([Profissao_1, Profissao_2, Profissao_3, Profissao_4, Profissao_5]),
 
 %7) O Professor tem 50 anos.
 
@@ -207,14 +215,7 @@ alldifferent([Profissao_1, Profissao_2, Profissao_3, Profissao_4, Profissao_5]),
 (Nome_4==joao, (Profissao_3==corretor; Profissao_5==corretor));
 (Nome_5==joao, Profissao_4==corretor)),
 
-%4) Cláudio está ao lado do investidor que gosta do setor de Varejo.
-
-(
-(Nome_1==claudio, Setor_2==varejo);
-(Nome_2==claudio, (Setor_1==varejo; Setor_3==varejo));
-(Nome_3==claudio, (Setor_2=varejo; Setor_4==varejo));
-(Nome_4==claudio, (Setor_3==varejo; Setor_5==varejo));
-(Nome_5==claudio, Setor_4==varejo)),
+alldifferent([Profissao_1, Profissao_2, Profissao_3, Profissao_4, Profissao_5]),
 
 
 %INVESTIMENTO
@@ -223,6 +224,7 @@ investimento(Investimento_2),
 investimento(Investimento_3),
 investimento(Investimento_4),
 investimento(Investimento_5),
+
 
 %2) Diego está ao lado do homem que tem o maior investimento na bolsa.
 
@@ -243,8 +245,6 @@ investimento(Investimento_5),
 (Nome_2==wagner, Gravata_3==azul, Investimento_4==i5000);
 (Nome_3==wagner,  Gravata_4==azul, Investimento_5==i5000)),
 
-
-alldifferent([Investimento_1, Investimento_2, Investimento_3, Investimento_4, Investimento_5]),
 
 %3) O homem mais novo tem R$ 20000 investido na bolsa.
 
@@ -311,6 +311,8 @@ alldifferent([Investimento_1, Investimento_2, Investimento_3, Investimento_4, In
 (Idade_3==a60, Investimento_2==i15000);
 (Idade_4==a60, Investimento_3==i15000);
 (Idade_5==a60, Investimento_4==i15000)),
+
+alldifferent([Investimento_1, Investimento_2, Investimento_3, Investimento_4, Investimento_5]),
 
 
 nl,%insere uma nova linha (coloca o cursor no início da linha de baixo)
