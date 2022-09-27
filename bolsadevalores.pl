@@ -134,8 +134,6 @@ idade(Idade_5),
 (Gravata_4==amarela, Idade_4==a45);
 (Gravata_5==amarela, Idade_5==a45)),
 
-alldifferent([Idade_1, Idade_2, Idade_3, Idade_4, Idade_5]),
-
 %10) O homem de 50 anos está em algum lugar à direita do homem de gravata Azul.
 
 (
@@ -144,22 +142,14 @@ alldifferent([Idade_1, Idade_2, Idade_3, Idade_4, Idade_5]),
 (Idade_4==a50, (Gravata_1==azul; Gravata_2==azul; Gravata_3==azul));
 (Idade_5==a50, (Gravata_1==azul; Gravata_2==azul; Gravata_3==azul; Gravata_4==azul))),
 
+alldifferent([Idade_1, Idade_2, Idade_3, Idade_4, Idade_5]),
+
 %NOME
 nome(Nome_1),
 nome(Nome_2),
 nome(Nome_3),
 nome(Nome_4),
 nome(Nome_5),
-
-%5) O homem de gravata Azul está em algum lugar entre o Wagner e o homem que tem R$ 5000 de investimento na bolsa, nessa ordem.
-
-(
-(Nome_1==wagner, (Gravata_2==azul; Gravata_3==azul; Gravata_4==azul), Investimento_5==i5000);
-(Nome_1==wagner, (Gravata_2==azul; Gravata_3==azul), Investimento_4==i5000);
-(Nome_1==wagner, Gravata_2==azul, Investimento_3==i5000);
-(Nome_2==wagner, (Gravata_3==azul; Gravata_4==azul), Investimento_5==i5000);
-(Nome_2==wagner, Gravata_3==azul, Investimento_4==i5000);
-(Nome_3==wagner,  Gravata_4==azul, Investimento_5==i5000)),
 
 %9) Wagner está exatamente à esquerda do investidor de 55 anos.
 
@@ -242,6 +232,17 @@ investimento(Investimento_5),
 (Nome_3==diego, (Investimento_2==i25000; Investimento_4==i25000));
 (Nome_4==diego, (Investimento_3==i25000; Investimento_5==i25000));
 (Nome_5==diego, Investimento_4==i25000)),
+
+%5) O homem de gravata Azul está em algum lugar entre o Wagner e o homem que tem R$ 5000 de investimento na bolsa, nessa ordem.
+
+(
+(Nome_1==wagner, (Gravata_2==azul; Gravata_3==azul; Gravata_4==azul), Investimento_5==i5000);
+(Nome_1==wagner, (Gravata_2==azul; Gravata_3==azul), Investimento_4==i5000);
+(Nome_1==wagner, Gravata_2==azul, Investimento_3==i5000);
+(Nome_2==wagner, (Gravata_3==azul; Gravata_4==azul), Investimento_5==i5000);
+(Nome_2==wagner, Gravata_3==azul, Investimento_4==i5000);
+(Nome_3==wagner,  Gravata_4==azul, Investimento_5==i5000)),
+
 
 alldifferent([Investimento_1, Investimento_2, Investimento_3, Investimento_4, Investimento_5]),
 
